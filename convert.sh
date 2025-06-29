@@ -18,9 +18,24 @@ fi
 
 # Check if file path is provided
 if [ -z "$1" ]; then
-    echo "Error: Please provide a file path"
-    echo "Usage: ./convert.sh [file_path]"
-    exit 1
+    echo "Converting all files in input directory..."
+    
+    # Process all files in input directory
+    for file in input/*; do
+        if [ -f "$file" ]; then
+            FILE_PATH="${file#input/}"
+            echo "Converting $FILE_PATH to markdown..."
+            
+            # Get base filename without extension and add .md
+            BASE_NAME=$(basename "$FILE_PATH")
+            OUTPUT_NAME="${BASE_NAME%.*}.md"
+            
+            docker compose run --rm md-converter python -m markitdown "$file" -o "output/$OUTPUT_NAME"
+        fi
+    done
+    
+    echo "All conversions completed! Check the output directory."
+    exit 0
 fi
 
 # Clean up the file path (remove leading ./input/ if present)

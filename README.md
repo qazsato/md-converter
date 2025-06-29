@@ -8,8 +8,11 @@ Docker環境でmarkitdownを使用してファイルをMarkdownに変換する�
 2. 変換スクリプトを実行
 
 ```bash
-# ファイル名のみ指定（推奨）
+# 特定のファイルを変換
 ./convert.sh document.pdf
+
+# input配下の全ファイルを一括変換
+./convert.sh
 
 # フルパス指定も可能
 ./convert.sh ./input/document.pdf
@@ -63,3 +66,4 @@ Docker内に以下がインストールされます:
 - poppler-utils（PDF処理）
 - tesseract-ocr（OCR処理）
 - libreoffice（Office文書処理）
+- ffmpeg（音声・動画処理）

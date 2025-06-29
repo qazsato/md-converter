@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     poppler-utils \
     tesseract-ocr \
     libreoffice \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Install markitdown with all dependencies
