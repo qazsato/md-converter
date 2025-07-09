@@ -4,37 +4,23 @@ Docker環境でmarkitdownを使用してファイルをMarkdownに変換する�
 
 ## 使用方法
 
-1. 変換したいファイルを `input` ディレクトリに配置
-2. 変換スクリプトを実行
+以下の手順で実行してください：
 
-```bash
-# 特定のファイルを変換
-./convert.sh document.pdf
+1. **環境構築**
+   ```bash
+   docker compose build
+   ```
 
-# input配下の全ファイルを一括変換
-./convert.sh
+2. **ファイル配置**
+   - 変換したいファイルを `input` ディレクトリに配置
 
-# フルパス指定も可能
-./convert.sh ./input/document.pdf
-```
+3. **変換実行**
+   ```bash
+   ./convert.sh
+   ```
 
-変換されたMarkdownファイルは `output` ディレクトリに保存されます。
-
-## セットアップ
-
-```bash
-# Dockerイメージをビルド
-docker compose build
-
-# 必要なディレクトリを作成（スクリプトが自動作成）
-mkdir -p input output
-```
-
-## ヘルプ
-
-```bash
-./convert.sh --help
-```
+4. **結果確認**
+   - 変換されたMarkdownファイルが `output` ディレクトリに出力されます
 
 ## ファイル構成
 
@@ -67,3 +53,23 @@ Docker内に以下がインストールされます:
 - tesseract-ocr（OCR処理）
 - libreoffice（Office文書処理）
 - ffmpeg（音声・動画処理）
+
+## Tips
+
+### ヘルプの確認
+```bash
+./convert.sh --help
+```
+
+### 特定のファイルのみ変換
+```bash
+# 特定のファイルを変換
+./convert.sh document.pdf
+
+# フルパス指定も可能
+./convert.sh ./input/document.pdf
+```
+
+### その他
+- `input/` と `output/` ディレクトリは自動作成されます
+- 複数ファイルを一括変換する場合は `input/` ディレクトリに配置後、引数なしで実行してください
